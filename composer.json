@@ -1,0 +1,27 @@
+{
+  "name": "codemascot/fnugg",
+  "type": "wordpress-plugin",
+  "description": "A Gutenberg block for Fnugg API.",
+  "license": "GPL-2.0",
+  "author": {
+    "name": "Khan Mohammad R.",
+    "email": "codemascot@hotmail.com",
+    "role": "Developer"
+  },
+  "require": {
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Fnugg\\": "inc/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "ci": [
+      "vendor/bin/phpcs"
+    ]
+  }
+}

@@ -1,8 +1,12 @@
 {
-	"name": "fnugg",
-	"version": "0.1.0",
-	"description": "Example block written with ESNext standard and JSX support – build step required.",
-	"author": "The WordPress Contributors",
+	"name": "codemascot-fnugg",
+	"version": "0.0.1",
+	"description": "A Gutenberg block for Fnugg API.",
+	"author": {
+		"name": "Khan Mohammad R.",
+		"email": "codemascot@hotmail.com",
+		"role": "Developer"
+	},
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
@@ -12,5 +16,17 @@
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
 		"packages-update": "wp-scripts packages-update"
+	},
+	"dependencies": {
+		"@wordpress/api-fetch": "^3.21.5",
+		"@wordpress/block-editor": "^5.2.8",
+		"@wordpress/blocks": "^7.0.4",
+		"@wordpress/components": "^12.0.7",
+		"@wordpress/compose": "^3.24.4",
+		"@wordpress/i18n": "^3.18.0",
+		"downshift": "6.1.0"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^13.0.3"
 	}
 }
