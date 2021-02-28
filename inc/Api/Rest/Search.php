@@ -19,8 +19,8 @@ defined('ABSPATH') || die;
  */
 final class Search extends \WP_REST_Controller
 {
-	/**
-     * Get remote data
+    /**
+     * Get remote data.
      *
      * @var array
      */
@@ -29,22 +29,21 @@ final class Search extends \WP_REST_Controller
     /**
      * Constructor.
      *
-	 * @return void
+     * @return void
      */
     public function __construct(Data $fetch)
     {
         $this->namespace = 'codemascot/v1';
         $this->rest_base = 'search';
-		$this->fetch     = $fetch;
-
+        $this->fetch     = $fetch;
     }
 
     /**
      * Registers the routes for the objects of the controller.
      *
      * @see register_rest_route()
-	 *
-	 * @return void
+     *
+     * @return void
      */
     public function register_routes() : void
     {
@@ -63,18 +62,19 @@ final class Search extends \WP_REST_Controller
         );
     }
 
-	/**
-	 * Retrieves a collection of search results.
-	 *
-	 * @param \WP_REST_Request $request Full details about the request.
-	 * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
-	 */
-	public function get_items( $request )
-	{
-	    $q = [
-			'q' => $request->get_param('q'),
-		];
+    /**
+     * Retrieves a collection of search results.
+     *
+     * @param \WP_REST_Request $request Full details about the request.
+     *
+     * @return \WP_REST_Response|\WP_Error Response object on success, or WP_Error object on failure.
+     */
+    public function get_items($request)
+    {
+        $q = [
+            'q' => $request->get_param('q'),
+        ];
 
-	    return $this->fetch->search($q);
-	}
+        return $this->fetch->search($q);
+    }
 }

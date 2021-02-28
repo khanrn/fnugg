@@ -15,7 +15,7 @@ defined('ABSPATH') || die;
  */
 interface Data
 {
-	/**
+    /**
      * Getting `autocomplete` remote API data.
      *
      * @param array $q GET query parameters.
@@ -24,7 +24,7 @@ interface Data
      */
     public function autocomplete(array $q) : array;
 
-	/**
+    /**
      * Getting `search` remote API data.
      *
      * @param array $q GET query parameters.

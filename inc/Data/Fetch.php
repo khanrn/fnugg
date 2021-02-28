@@ -18,18 +18,18 @@ defined('ABSPATH') || die;
  */
 class Fetch implements Data
 {
-	/**
-	 * Remote API URL.
-	 *
-	 * @var string
-	 */
+    /**
+     * Remote API URL.
+     *
+     * @var string
+     */
     protected string $url = '';
 
-	/**
-	 * `wp_remote_get()` arguments.
-	 *
-	 * @var array
-	 */
+    /**
+     * `wp_remote_get()` arguments.
+     *
+     * @var array
+     */
     protected array $args = [];
 
     /**
@@ -43,11 +43,11 @@ class Fetch implements Data
     {
         $this->url  = untrailingslashit(esc_url_raw($url));
 
-		/**
+        /**
          * Filters `wp_remote_get()` arguments for Fetch.
-		 *
-         * @param array $args
-		 * @param string $url
+         *
+         * @param array  $args
+         * @param string $url
          */
         $this->args = apply_filters('fnugg_wp_remote_get_args', [
             'timeout'             => 10,
@@ -56,7 +56,7 @@ class Fetch implements Data
         ], $this->url);
     }
 
-	/**
+    /**
      * Getting remote API data.
      *
      * @param string $url Remote API URL.
@@ -66,16 +66,16 @@ class Fetch implements Data
     protected function get_remote_json(string $url) : array
     {
         $response = wp_safe_remote_get($url, $this->args);
-		$result = json_decode(wp_remote_retrieve_body($response), true);
+        $result   = json_decode(wp_remote_retrieve_body($response), true);
 
-		if (empty($result)) {
-			return [];
-		}
+        if (empty($result)) {
+            return [];
+        }
 
-		return $result;
+        return $result;
     }
 
-	/**
+    /**
      * Getting `autocomplete` remote API data.
      *
      * @param array $q GET query parameters.
@@ -88,7 +88,7 @@ class Fetch implements Data
         return $this->get_remote_json($url);
     }
 
-	/**
+    /**
      * Getting `search` remote API data.
      *
      * @param array $q GET query parameters.

@@ -20,14 +20,14 @@ use \Fnugg\Data;
 final class Api
 {
     /**
-     * Get remote data
+     * Get remote data.
      *
      * @var Data
      */
     protected Data\Data $fetch;
 
-	/**
-     * Get remote data
+    /**
+     * Get remote data.
      *
      * @var string
      */
@@ -42,13 +42,13 @@ final class Api
      */
     public function __construct(string $url)
     {
-		$this->url   = esc_url_raw($url);
+        $this->url   = esc_url_raw($url);
 
-		/**
+        /**
          * Filters the Fetch object.
-		 *
+         *
          * @param Data\Data $fetch
-		 * @param string $url
+         * @param string    $url
          */
         $this->fetch = apply_filters('fnugg_fetch_object', new Data\Fetch($this->url), $this->url);
     }
@@ -70,22 +70,22 @@ final class Api
      */
     public function init_rest() : void
     {
-		$routes = [
-			'autocomplete' => (new Rest\Autocomplete($this->fetch)),
-			'api'          => (new Rest\Search($this->fetch)),
-		];
+        $routes = [
+            'autocomplete' => (new Rest\Autocomplete($this->fetch)),
+            'api'          => (new Rest\Search($this->fetch)),
+        ];
 
         /**
          * Filters the REST API routes init.
          *
-         * @param array $routes
+         * @param array     $routes
          * @param Data\Data $fetch
-         * @param string $url
+         * @param string    $url
          */
-	    $routes = apply_filters('fnugg_rest_routes_init', $routes, $this->fetch, $this->url);
+        $routes = apply_filters('fnugg_rest_routes_init', $routes, $this->fetch, $this->url);
 
-		foreach ($routes as $route) {
-		    $route->register_routes();
-		}
+        foreach ($routes as $route) {
+            $route->register_routes();
+        }
     }
 }

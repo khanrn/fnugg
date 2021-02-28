@@ -46,12 +46,12 @@ function initialize()
             require_once __DIR__ . '/vendor/autoload.php';
         }
 
-		$api = apply_filters('fnugg_core_modules', 'https://api.fnugg.no/');
+        $api = apply_filters('fnugg_core_modules', 'https://api.fnugg.no/');
 
         // Loading the core modules of the plugin
         $modules = [
-			'api'   => (new Api\Api($api))->init(),
-			'admin' => (new Admin\Block(['dir' => __DIR__, 'file' => __FILE__]))->init(),
+            'api'   => (new Api\Api($api))->init(),
+            'admin' => (new Admin\Block(['dir' => __DIR__, 'file' => __FILE__]))->init(),
         ];
 
         /**
