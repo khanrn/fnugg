@@ -1,64 +1,76 @@
-<?php
+<?php // -*- coding: utf-8 -*-
+declare(strict_types=1);
+
 /**
  * Plugin Name:     Fnugg
- * Description:     Example block written with ESNext standard and JSX support – build step required.
- * Version:         0.1.0
- * Author:          The WordPress Contributors
- * License:         GPL-2.0-or-later
- * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
+ * Plugin URI:      https://github.com/codemascot/fnugg
+ * Description:     A Gutenberg block for Fnugg API.
+ * Author:          Khan Mohammad R. <codemascot@hotmail.com>
+ * Author URI:      https://www.codemascot.com/
  * Text Domain:     fnugg
+ * Domain Path:     /languages
+ * Version:         dev-0.0.1
  *
- * @package         create-block
+ * @package         Fnugg
  */
+
+namespace Fnugg;
 
 /**
- * Registers all block assets so that they can be enqueued through the block editor
- * in the corresponding context.
- *
- * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
+ * Defining base constant.
  */
-function create_block_fnugg_block_init() {
-	$dir = __DIR__;
+defined('ABSPATH') || die;
 
-	$script_asset_path = "$dir/build/index.asset.php";
-	if ( ! file_exists( $script_asset_path ) ) {
-		throw new Error(
-			'You need to run `npm start` or `npm run build` for the "create-block/fnugg" block first.'
-		);
-	}
-	$index_js     = 'build/index.js';
-	$script_asset = require( $script_asset_path );
-	wp_register_script(
-		'create-block-fnugg-block-editor',
-		plugins_url( $index_js, __FILE__ ),
-		$script_asset['dependencies'],
-		$script_asset['version']
-	);
-	wp_set_script_translations( 'create-block-fnugg-block-editor', 'fnugg' );
+/**
+ * Initialize all the plugin things.
+ *
+ * @throws \Throwable
+ *
+ * @return array|void
+ */
+function initialize()
+{
+    try {
+        // Translation directory updated !
+        load_plugin_textdomain(
+            'fnugg',
+            true,
+            basename(dirname(__FILE__)) . '/languages'
+        );
 
-	$editor_css = 'build/index.css';
-	wp_register_style(
-		'create-block-fnugg-block-editor',
-		plugins_url( $editor_css, __FILE__ ),
-		array(),
-		filemtime( "$dir/$editor_css" )
-	);
+        /**
+         * Checking if vendor/autoload.php exists or not.
+         */
+        if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+            /** @noinspection PhpIncludeInspection */
+            require_once __DIR__ . '/vendor/autoload.php';
+        }
 
-	$style_css = 'build/style-index.css';
-	wp_register_style(
-		'create-block-fnugg-block',
-		plugins_url( $style_css, __FILE__ ),
-		array(),
-		filemtime( "$dir/$style_css" )
-	);
+		$api = apply_filters('fnugg_core_modules', 'https://api.fnugg.no/');
 
-	register_block_type(
-		'create-block/fnugg',
-		array(
-			'editor_script' => 'create-block-fnugg-block-editor',
-			'editor_style'  => 'create-block-fnugg-block-editor',
-			'style'         => 'create-block-fnugg-block',
-		)
-	);
+        // Loading the core modules of the plugin
+        $modules = [
+			'api'   => (new Api\Api($api)),
+			'admin' => (new Admin\Block(['dir' => __DIR__, 'file' => __FILE__]))->init(),
+        ];
+
+        /**
+         * Filters the core modules of the plugin.
+         *
+         * @param array $modules
+         */
+        return apply_filters('fnugg_core_modules', $modules);
+    } catch (\Throwable $throwable) {
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            throw $throwable;
+        }
+
+        /**
+         * Fires when any error happens.
+         *
+         * @param \Throwable $throwable
+         */
+        do_action('fnugg_error', $throwable);
+    }
 }
-add_action( 'init', 'create_block_fnugg_block_init' );
+add_action('plugins_loaded', __NAMESPACE__ . '\\initialize');
