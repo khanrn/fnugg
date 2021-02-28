@@ -38,10 +38,58 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
-	return (
+export default function Edit(props) {
+    const autocompleter = {
+        name: 'codemascot/fnugg',
+        triggerPrefix: '~',
+        options: (search) => {
+            if (search) {
+                return apiFetch({
+                    path: 'codemascot/v1/autocomplete/?q=' + search
+                });
+            }
+            return [];
+        },
+        isDebounced: true,
+        getOptionLabel: (item) => {
+            return <span>{item.name} <small>{item.site_path}</small></span>;
+        },
+        // Declares that options should be matched by their name
+        getOptionKeywords: item => [item.name, item.site_path],
+        // completions should be removed, but then spawn setPost
+        getOptionCompletion: (item) => {
+            return {
+                action: 'replace',
+                value: props.setAttributes({
+					name: item.name,
+					sitePath: item.site_path,
+				}),
+            };
+        },
+    };
+
+    // Our filter function
+    addFilter(
+        'editor.Autocomplete.completers',
+        'codemascot',
+		(completers, blockName) => {
+			return blockName === 'codemascot/fnugg'
+				? [...completers, autocompleter]
+				: completers;
+		}
+    );
+    return (
 		<p { ...useBlockProps() }>
-			{ __( 'Fnugg – hello from the editor!', 'fnugg' ) }
+			<p>{__('Please select resort...', 'fnugg')}</p>
+			<RichText
+				tagName="p"
+				placeholder={__('Use tilda(~) to trigger the autocomplete...', 'fnugg')}
+				withoutInteractiveFormatting
+				onChange={(value) => {}}
+				value={props.attributes.name}
+				aria-autocomplete="list"
+			/>
+			<small>{props.attributes.sitePath}</small>
 		</p>
-	);
+    )
 }
