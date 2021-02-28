@@ -32,7 +32,7 @@ import save from './save';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'create-block/fnugg', {
+registerBlockType( 'codemascot/fnugg', {
 	/**
 	 * @see https://make.wordpress.org/core/2020/11/18/block-api-version-2/
 	 */
@@ -52,7 +52,7 @@ registerBlockType( 'create-block/fnugg', {
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'Example block written with ESNext standard and JSX support – build step required.',
+		'A Gutenberg block for Fnugg API.',
 		'fnugg'
 	),
 
@@ -88,7 +88,7 @@ registerBlockType( 'create-block/fnugg', {
 			type: 'string',
 			select: 'small'
 		},
-	}
+	},
 
 	/**
 	 * @see ./edit.js
