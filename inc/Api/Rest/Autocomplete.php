@@ -79,7 +79,7 @@ final class Autocomplete extends \WP_REST_Controller
          *
          * @param array $q
          */
-        $q = apply_filters('fnugg_autocomplete_query_args', $modules);
+        $q = apply_filters('fnugg_autocomplete_query_args', $q);
 
 		/**
          * Filters the autocomplete query result.
