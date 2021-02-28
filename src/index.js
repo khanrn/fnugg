@@ -77,6 +77,20 @@ registerBlockType( 'create-block/fnugg', {
 	},
 
 	/**
+	 * Attributes
+	 */
+	attributes: {
+		name: {
+			type: 'string',
+			select: 'p'
+		},
+		sitePath: {
+			type: 'string',
+			select: 'small'
+		},
+	}
+
+	/**
 	 * @see ./edit.js
 	 */
 	edit: Edit,
