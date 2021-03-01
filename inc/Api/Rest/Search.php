@@ -71,10 +71,22 @@ final class Search extends \WP_REST_Controller
      */
     public function get_items($request)
     {
-        $q = [
-            'q' => $request->get_param('q'),
-        ];
+        // No need of sanitization as it's not touching our DB.
+        $q = $request->get_params();
 
-        return $this->fetch->search($q);
+        /**
+         * Filters the search query argument.
+         *
+         * @param array $q
+         * @param \WP_REST_Request $request
+         */
+        $q = apply_filters('fnugg_search_query_args', $q, $request);
+
+        /**
+         * Filters the search query result.
+         *
+         * @param array $q
+         */
+        return apply_filters('fnugg_search_result', $this->fetch->search($q));
     }
 }
