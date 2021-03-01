@@ -78,6 +78,7 @@ export default function Edit(props) {
 				: completers;
 		}
     );
+
     return (
 		<p { ...useBlockProps() }>
 			<p>{__('Please select resort...', 'fnugg')}</p>
@@ -91,5 +92,5 @@ export default function Edit(props) {
 			/>
 			<small>{props.attributes.sitePath}</small>
 		</p>
-    )
+    );
 }
