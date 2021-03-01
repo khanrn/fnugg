@@ -43,16 +43,20 @@ export default function Edit(props) {
         name: 'codemascot/fnugg',
         triggerPrefix: '~',
         options: (search) => {
+            if (! search || 'undefined' === search) {
+                return [];
+            }
+
             let uri = applyFilters(
                 'fnugg_autocompleter_remote_api_options_uri',
                 ['codemascot/v1/autocomplete/?q=', search]
             );
 
-            if (search) {
-                return apiFetch({path: uri[0] + uri[1]});
-            }
-
-            return [];
+            return apiFetch({path: uri[0] + uri[1]}).then(
+                (resp) => {
+                    return resp;
+                }
+            );
         },
         isDebounced: true,
         getOptionLabel: (item) => {
