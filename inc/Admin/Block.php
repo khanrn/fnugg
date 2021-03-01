@@ -138,8 +138,8 @@ final class Block
                 'editor_style'    => 'codemascot-fnugg-block-editor',
                 'style'           => 'codemascot-fnugg-block',
                 'attributes'      => [
-                    'name'           => ['type' => 'string', 'default' => ''],
-                    'sitePath'       => ['type' => 'string', 'default' => ''],
+                    'name'      => ['type' => 'string', 'default' => ''],
+                    'site_path' => ['type' => 'string', 'default' => ''],
                 ],
                 'render_callback' => [$this, 'render'],
             ]

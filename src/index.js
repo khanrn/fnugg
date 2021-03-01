@@ -83,7 +83,7 @@ registerBlockType( 'codemascot/fnugg', {
         name: {
             type: 'string',
         },
-        sitePath: {
+        site_path: {
             type: 'string',
         },
     },

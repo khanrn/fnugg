@@ -86,7 +86,7 @@ export default function Edit(props) {
                 action: params[0],
                 value: props.setAttributes({
                     name: params[1].name,
-                    sitePath: params[1].site_path,
+                    site_path: params[1].site_path,
                 }),
             };
         },
@@ -118,7 +118,7 @@ export default function Edit(props) {
                 value={props.attributes.name}
                 aria-autocomplete="list"
             />
-            <small>{props.attributes.sitePath}</small>
+            <small>{props.attributes.site_path}</small>
         </p>
     );
 }
