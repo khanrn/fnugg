@@ -62,6 +62,6 @@ class Fetch implements Data
     public function search(array $q) : array
     {
         $url = add_query_arg($q, $this->url . '/search/');
-        return $this->get_remote_json($url);
+        return Helpers::get_remote_json($url);
     }
 }
