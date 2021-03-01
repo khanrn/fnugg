@@ -80,7 +80,11 @@ export default function Edit(props) {
         },
     };
 
-    // Our filter function
+    // Tried to use the Autocomplete component first,
+	// but faced issues with it.
+	// @see https://github.com/WordPress/gutenberg/issues/10542
+	// Therefore used the RichText block and replaced it's
+	// `autocompleter` with `editor.Autocomplete.completers` hook.
     addFilter(
         'editor.Autocomplete.completers',
         'codemascot',
