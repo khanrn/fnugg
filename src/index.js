@@ -82,11 +82,9 @@ registerBlockType( 'codemascot/fnugg', {
     attributes: {
         name: {
             type: 'string',
-            select: 'p'
         },
         sitePath: {
             type: 'string',
-            select: 'small'
         },
     },
 
