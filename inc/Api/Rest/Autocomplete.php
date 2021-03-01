@@ -71,16 +71,16 @@ final class Autocomplete extends \WP_REST_Controller
      */
     public function get_items($request)
     {
-        $q = [
-            'q' => $request->get_param('q'), // No need of sanitization as it's not touching our DB.
-        ];
+        // No need of sanitization as it's not touching our DB.
+        $q = $request->get_params();
 
         /**
          * Filters the autocomplete query argument.
          *
          * @param array $q
+         * @param \WP_REST_Request $request
          */
-        $q = apply_filters('fnugg_autocomplete_query_args', $q);
+        $q = apply_filters('fnugg_autocomplete_query_args', $q, $request);
 
         /**
          * Filters the autocomplete query result.
