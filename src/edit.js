@@ -70,11 +70,19 @@ export default function Edit(props) {
         getOptionKeywords: item => [item.name, item.site_path],
         // completions should be removed, but then spawn setPost
         getOptionCompletion: (item) => {
+            let params = applyFilters(
+                'fnugg_autocompleter_options_set_attributes',
+                [
+                    'replace',
+                    item
+                ]
+            );
+
             return {
-                action: 'replace',
+                action: params[0],
                 value: props.setAttributes({
-                    name: item.name,
-                    sitePath: item.site_path,
+                    name: params[1].name,
+                    sitePath: params[1].site_path,
                 }),
             };
         },
