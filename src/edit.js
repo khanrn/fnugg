@@ -105,7 +105,7 @@ export default function Edit(props) {
 
     return (
         <p { ...useBlockProps() }>
-            <p>{__('Please select resort...', 'fnugg')}</p>
+            <p>{__('Fnugg: Please select resort...', 'fnugg')}</p>
             <RichText
                 tagName="p"
                 placeholder={__('Use tilda(~) to trigger the autocomplete...', 'fnugg')}
