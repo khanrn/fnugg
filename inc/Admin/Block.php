@@ -99,6 +99,26 @@ final class Block
     }
 
     /**
+     * Frontend redering in server side
+     *
+     * @see wp-includes/class-wp-block-type.php, WP_Block_Type():render()
+     *
+     * @param array $atts
+     *
+     * @return string
+     */
+    public function render($atts)
+    {
+        if (is_admin()) {
+            return;
+        }
+
+        ob_start();
+        include_once 'Views/html-render-frontend.php';
+        return ob_get_clean();
+    }
+
+    /**
      * Initiating the block.
      *
      * @return void
@@ -114,9 +134,14 @@ final class Block
         register_block_type(
             'codemascot/fnugg',
             [
-                'editor_script' => 'codemascot-fnugg-block-editor',
-                'editor_style'  => 'codemascot-fnugg-block-editor',
-                'style'         => 'codemascot-fnugg-block',
+                'editor_script'   => 'codemascot-fnugg-block-editor',
+                'editor_style'    => 'codemascot-fnugg-block-editor',
+                'style'           => 'codemascot-fnugg-block',
+                'attributes'      => [
+                    'name'           => ['type' => 'string', 'default' => ''],
+                    'sitePath'       => ['type' => 'string', 'default' => ''],
+                ],
+                'render_callback' => [$this, 'render'],
             ]
         );
     }
