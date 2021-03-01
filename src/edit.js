@@ -20,7 +20,7 @@ import apiFetch from '@wordpress/api-fetch';
 import ServerSideRender from '@wordpress/server-side-render';
 import {RichText} from '@wordpress/block-editor';
 import {withState} from '@wordpress/compose';
-import {addFilter, applyFilter} from '@wordpress/hooks';
+import {addFilter, applyFilters} from '@wordpress/hooks';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
