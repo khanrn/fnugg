@@ -23,12 +23,6 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save(props) {
-    return (
-        <p { ...useBlockProps.save() }>
-            { __(
-                'Fnugg – hello from the saved content!',
-                'fnugg'
-            ) }
-        </p>
-    );
+    const {name, sitePath} = props.attributes;
+    return null;
 }
