@@ -53,8 +53,7 @@ function initialize()
             'api'   => (new Api\Api($api))->init(),
             'admin' => (new Admin\Block([
                 'dir'  => __DIR__,
-                'file' => __FILE__,
-                'url'  => $api
+                'file' => __FILE__
             ]))->init(),
         ];
 
