@@ -8,6 +8,8 @@ namespace Fnugg\Admin;
  */
 defined('ABSPATH') || die;
 
+use Fnugg\Shared\Helpers;
+
 /**
  * Initiating Gutenberg Fnugg Block.
  *
@@ -112,6 +114,23 @@ final class Block
         if (is_admin()) {
             return;
         }
+
+        /**
+         * Filters frontend search API response.
+         *
+         * @param array $resp
+         * @param array $atts
+         */
+        $resp = apply_filters(
+            'fnugg_frontend_self_api_search_response',
+            Helpers::get_remote_json(
+                add_query_arg(
+                    ['q' => $atts['name']],
+                    get_rest_url(null, 'codemascot/v1/search/')
+                )
+            ),
+            $atts
+        );
 
         ob_start();
         include_once 'Views/html-render-frontend.php';
