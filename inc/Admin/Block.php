@@ -18,11 +18,11 @@ defined('ABSPATH') || die;
 final class Block
 {
     /**
-     * __DIR__ and __FILE__ values.
+     * Arguments.
      *
      * @var array
      */
-    protected array $paths = [];
+    protected array $args = [];
 
     /**
      * __DIR__ and __FILE__ values.
@@ -34,14 +34,14 @@ final class Block
     /**
      * Constructor.
      *
-     * @param array $paths __DIR__ and __FILE__ values
+     * @param array $args Arguments.
      *
      * @return void
      */
-    public function __construct(array $paths)
+    public function __construct(array $args)
     {
-        $this->paths = $paths;
-        $this->asset = $this->paths['dir'] . '/build/index.asset.php';
+        $this->args = $args;
+        $this->asset = $this->args['dir'] . '/build/index.asset.php';
     }
 
     /**
@@ -67,7 +67,7 @@ final class Block
         $script_asset = require $this->asset;
         wp_register_script(
             'codemascot-fnugg-block-editor',
-            plugins_url($index_js, $this->paths['file']),
+            plugins_url($index_js, $this->args['file']),
             $script_asset['dependencies'],
             $script_asset['version']
         );
@@ -76,9 +76,9 @@ final class Block
         $editor_css = 'build/index.css';
         wp_register_style(
             'codemascot-fnugg-block-editor',
-            plugins_url($editor_css, $this->paths['file']),
+            plugins_url($editor_css, $this->args['file']),
             [],
-            filemtime($this->paths['dir'] . '/' . $editor_css)
+            filemtime($this->args['dir'] . '/' . $editor_css)
         );
     }
 
@@ -92,9 +92,9 @@ final class Block
         $style_css = 'build/style-index.css';
         wp_register_style(
             'codemascot-fnugg-block',
-            plugins_url($style_css, $this->paths['file']),
+            plugins_url($style_css, $this->args['file']),
             [],
-            filemtime($this->paths['dir'] . '/' . $style_css)
+            filemtime($this->args['dir'] . '/' . $style_css)
         );
     }
 
