@@ -17,4 +17,35 @@ defined('ABSPATH') || die;
  */
 final class Helpers
 {
+    /**
+     * Getting remote API data.
+     *
+     * @param string $url Remote API URL.
+     *
+     * @return array
+     */
+    public static function get_remote_json(string $url) : array
+    {
+        /**
+         * Filters `wp_remote_get()` arguments for Fetch.
+         *
+         * @param array  $args
+         * @param string $url
+         */
+        $args = apply_filters('fnugg_wp_remote_get_args', [
+            'timeout'             => 10,
+            'redirection'         => 0,
+            'limit_response_size' => 153600, // 150 KB
+        ], $url);
+
+        $result = wp_remote_get($url, $args);
+        $result = wp_remote_retrieve_body($result);
+        $result = json_decode($result, true);
+
+        if (empty($result)) {
+            return [];
+        }
+
+        return $result;
+    }
 }
