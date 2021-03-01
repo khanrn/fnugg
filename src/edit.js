@@ -43,10 +43,10 @@ export default function Edit(props) {
         name: 'codemascot/fnugg',
         triggerPrefix: '~',
         options: (search) => {
-			let uri = applyFilters(
-				'fnugg_autocompleter_remote_api_options_uri',
-				['codemascot/v1/autocomplete/?q=', search]
-			);
+            let uri = applyFilters(
+                'fnugg_autocompleter_remote_api_options_uri',
+                ['codemascot/v1/autocomplete/?q=', search]
+            );
 
             if (search) {
                 return apiFetch({path: uri[0] + uri[1]});
@@ -56,13 +56,13 @@ export default function Edit(props) {
         },
         isDebounced: true,
         getOptionLabel: (item) => {
-			let label = applyFilters(
-				'fnugg_autocompleter_option_label',
-				[
-					<span>{item.name} <small>{item.site_path}</small></span>,
-					item
-				]
-			);
+            let label = applyFilters(
+                'fnugg_autocompleter_option_label',
+                [
+                    <span>{item.name} <small>{item.site_path}</small></span>,
+                    item
+                ]
+            );
 
             return label[0];
         },
@@ -73,40 +73,40 @@ export default function Edit(props) {
             return {
                 action: 'replace',
                 value: props.setAttributes({
-					name: item.name,
-					sitePath: item.site_path,
-				}),
+                    name: item.name,
+                    sitePath: item.site_path,
+                }),
             };
         },
     };
 
     // Tried to use the Autocomplete component first,
-	// but faced issues with it.
-	// @see https://github.com/WordPress/gutenberg/issues/10542
-	// Therefore used the RichText block and replaced it's
-	// `autocompleter` with `editor.Autocomplete.completers` hook.
+    // but faced issues with it.
+    // @see https://github.com/WordPress/gutenberg/issues/10542
+    // Therefore used the RichText block and replaced it's
+    // `autocompleter` with `editor.Autocomplete.completers` hook.
     addFilter(
         'editor.Autocomplete.completers',
         'codemascot',
-		(completers, blockName) => {
-			return blockName === 'codemascot/fnugg'
-				? [...completers, autocompleter]
-				: completers;
-		}
+        (completers, blockName) => {
+            return blockName === 'codemascot/fnugg'
+                ? [...completers, autocompleter]
+                : completers;
+        }
     );
 
     return (
-		<p { ...useBlockProps() }>
-			<p>{__('Please select resort...', 'fnugg')}</p>
-			<RichText
-				tagName="p"
-				placeholder={__('Use tilda(~) to trigger the autocomplete...', 'fnugg')}
-				withoutInteractiveFormatting
-				onChange={(value) => {}}
-				value={props.attributes.name}
-				aria-autocomplete="list"
-			/>
-			<small>{props.attributes.sitePath}</small>
-		</p>
+        <p { ...useBlockProps() }>
+            <p>{__('Please select resort...', 'fnugg')}</p>
+            <RichText
+                tagName="p"
+                placeholder={__('Use tilda(~) to trigger the autocomplete...', 'fnugg')}
+                withoutInteractiveFormatting
+                onChange={(value) => {}}
+                value={props.attributes.name}
+                aria-autocomplete="list"
+            />
+            <small>{props.attributes.sitePath}</small>
+        </p>
     );
 }
