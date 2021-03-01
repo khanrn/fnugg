@@ -49,7 +49,7 @@ class Fetch implements Data
     public function autocomplete(array $q) : array
     {
         $url = add_query_arg($q, $this->url . '/suggest/autocomplete/');
-        return $this->get_remote_json($url);
+        return Helpers::get_remote_json($url);
     }
 
     /**
