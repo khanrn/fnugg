@@ -8,6 +8,8 @@ namespace Fnugg\Data;
  */
 defined('ABSPATH') || die;
 
+use \Fnugg\Shared\Helpers;
+
 /**
  * Fetching data from fnugg.no.
  * This class is extensible!
