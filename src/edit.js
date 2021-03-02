@@ -17,9 +17,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  * WP Dependencies
  */
 import apiFetch from '@wordpress/api-fetch';
-import ServerSideRender from '@wordpress/server-side-render';
 import {RichText} from '@wordpress/block-editor';
-import {withState} from '@wordpress/compose';
 import {addFilter, applyFilters} from '@wordpress/hooks';
 
 /**
