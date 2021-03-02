@@ -8,7 +8,8 @@ namespace Fnugg\Api\Rest;
  */
 defined('ABSPATH') || die;
 
-use Fnugg\Data\Data;
+use \Fnugg\Data\Data;
+use \Fnugg\Shared\Helpers;
 
 /**
  * Initiating `autocomplete` rest route.
@@ -82,11 +83,31 @@ final class Autocomplete extends \WP_REST_Controller
          */
         $q = apply_filters('fnugg_autocomplete_query_args', $q, $request);
 
+        $transient = Helpers::trans_id($q);
+
+        $content = get_transient( $transient );
+
+        if ( ! empty( $content ) ) {
+            return $content;
+        }
+
+        $content = null;
+
         /**
          * Filters the autocomplete query result.
          *
          * @param array $q
          */
-        return apply_filters('fnugg_autocomplete_result', $this->fetch->autocomplete($q)['result']);
+        $content = apply_filters(
+            'fnugg_autocomplete_result',
+            $this->fetch->autocomplete($q)['result'],
+            $q,
+            $request
+        );
+
+        // Autocomplete getting cached for 1 DAY
+        set_transient( $transient, $content, DAY_IN_SECONDS );
+
+        return $content;
     }
 }
