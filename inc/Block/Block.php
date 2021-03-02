@@ -67,8 +67,8 @@ final class Block
     {
         $index_js     = 'build/index.js';
         $script_asset = require $this->asset;
-        wp_register_script(
-            'codemascot-fnugg-block-editor',
+        wp_enqueue_script(
+            'codemascot-fnugg-block-editor-js',
             plugins_url($index_js, $this->args['file']),
             $script_asset['dependencies'],
             $script_asset['version']
@@ -76,8 +76,8 @@ final class Block
         wp_set_script_translations('codemascot-fnugg-block-editor', 'fnugg');
 
         $editor_css = 'build/index.css';
-        wp_register_style(
-            'codemascot-fnugg-block-editor',
+        wp_enqueue_style(
+            'codemascot-fnugg-block-editor-css',
             plugins_url($editor_css, $this->args['file']),
             [],
             filemtime($this->args['dir'] . '/' . $editor_css)
@@ -160,15 +160,15 @@ final class Block
     {
         if (! file_exists($this->asset)) {
             throw new \Error(
-                'You need to run `npm start` or `npm run build` for the "codemascot/fnugg" block first.'
+                __('You need to run `npm start` or `npm run build` for the "codemascot/fnugg" block first.', 'fnugg')
             );
         }
 
         register_block_type(
             'codemascot/fnugg',
             [
-                'editor_script'   => 'codemascot-fnugg-block-editor',
-                'editor_style'    => 'codemascot-fnugg-block-editor',
+                'editor_script'   => 'codemascot-fnugg-block-editor-js',
+                'editor_style'    => 'codemascot-fnugg-block-editor-css',
                 'style'           => 'codemascot-fnugg-block',
                 'attributes'      => [
                     'name'      => ['type' => 'string', 'default' => ''],
