@@ -48,4 +48,18 @@ final class Helpers
 
         return $result;
     }
+
+    /**
+     * Creating transient ID from query array
+     *
+     * @param array $q Query array
+     *
+     * @return string
+     */
+    public static function trans_id(array $q) : string
+    {
+        // We need to hash it as the query can contain
+        // multiple types of characters and languages
+        return hash('sha256', http_build_query($q));
+    }
 }
