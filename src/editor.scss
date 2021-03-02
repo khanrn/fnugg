@@ -4,6 +4,25 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-create-block-fnugg {
-	border: 1px dotted #f00;
+.wp-block-codemascot-fnugg {
+	font-family: 'Open Sans';
+	border: 2px solid;
+	padding: 0px 10px;
+	background: #fffdfe;
+	border-radius: 4px;
+	h3 {
+		padding: 0 0 3px 0;
+		margin: 0 !important;
+	}
+	p.rich-text {
+		margin: 5px 0;
+		border: 1px solid;
+		padding: 5px 10px;
+		border-radius: 3px;
+		background: #e8e8e8;
+	}
+	small {
+		margin: 0;
+		padding: 0 0 3px 0;
+	}
 }
