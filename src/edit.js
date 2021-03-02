@@ -90,11 +90,10 @@ export default function Edit(props) {
         },
     }];
 
-    // Tried to use the Autocomplete component first,
-    // but faced issues with it.
+    // Tried to use the Autocomplete component first, but faced issues with it.
     // @see https://github.com/WordPress/gutenberg/issues/10542
-    // Therefore used the RichText block and replaced it's
-    // `autocompleter` with `editor.Autocomplete.completers` hook.
+    // Therefore used the RichText block and replaced it's `autocompleter`
+    // settings obejct with`editor.Autocomplete.completers` hook.
     addFilter(
         'editor.Autocomplete.completers',
         'codemascot',
@@ -105,7 +104,7 @@ export default function Edit(props) {
 
     return (
         <p { ...useBlockProps() }>
-            <h3>{__('Fnugg: Please select resort...', 'fnugg')}</h3>
+            <h3>{__('Fnugg.no API Setting:', 'fnugg')}</h3>
             <RichText
                 tagName="p"
                 placeholder={__('Use tilda(~) to trigger the autocomplete...', 'fnugg')}
