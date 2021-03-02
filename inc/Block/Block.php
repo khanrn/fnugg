@@ -1,7 +1,7 @@
 <?php // -*- coding: utf-8 -*-
 declare(strict_types=1);
 
-namespace Fnugg\Admin;
+namespace Fnugg\Block;
 
 /**
  * Defining base constant.
