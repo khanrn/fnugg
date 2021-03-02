@@ -39,7 +39,7 @@ import './editor.scss';
  * @return {WPElement} Element to render.
  */
 export default function Edit(props) {
-    const autocompleter = {
+    const autocompleters = [{
         name: 'codemascot/fnugg',
         triggerPrefix: '~',
         options: (search) => {
@@ -90,7 +90,7 @@ export default function Edit(props) {
                 }),
             };
         },
-    };
+    }];
 
     // Tried to use the Autocomplete component first,
     // but faced issues with it.
@@ -101,15 +101,13 @@ export default function Edit(props) {
         'editor.Autocomplete.completers',
         'codemascot',
         (completers, blockName) => {
-            return blockName === 'codemascot/fnugg'
-                ? [...completers, autocompleter]
-                : completers;
+            return (blockName === 'codemascot/fnugg') ? autocompleters : completers;
         }
     );
 
     return (
         <p { ...useBlockProps() }>
-            <p>{__('Fnugg: Please select resort...', 'fnugg')}</p>
+            <h3>{__('Fnugg: Please select resort...', 'fnugg')}</h3>
             <RichText
                 tagName="p"
                 placeholder={__('Use tilda(~) to trigger the autocomplete...', 'fnugg')}
