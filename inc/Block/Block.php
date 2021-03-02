@@ -123,6 +123,16 @@ final class Block
          */
         $q = apply_filters('fnugg_frontend_self_api_search_params', ['q' => $atts['name']], $atts);
 
+        $transient = Helpers::trans_id($q);
+
+        $content = get_transient( $transient );
+
+        if ( ! empty( $content ) ) {
+            return $content;
+        }
+
+        $content = null;
+
         /**
          * Filters frontend search API response.
          *
@@ -141,6 +151,7 @@ final class Block
         );
 
         ob_start();
+
         /**
          * Fires at HTML frontend render.
          *
@@ -148,7 +159,13 @@ final class Block
          * @param array $atts
          */
         do_action('fnugg_frontend_render_html', $response, $atts);
-        return ob_get_clean();
+
+        $content = ob_get_clean();
+
+        // Frontend HTML getting cached for 15 MINUTES
+        set_transient( $transient, $content, 15 * MINUTE_IN_SECONDS );
+
+        return $content;
     }
 
     /**
