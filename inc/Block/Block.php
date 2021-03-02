@@ -109,10 +109,10 @@ final class Block
      *
      * @return string
      */
-    public function render($atts)
+    public function render($atts) : string
     {
         if (is_admin()) {
-            return;
+            return '';
         }
 
         /**
