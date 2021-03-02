@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace Fnugg\Api\Rest;
 
-use Fnugg\Data\Data;
-
 /**
  * Defining base constant.
  */
 defined('ABSPATH') || die;
+
+use \Fnugg\Data\Data;
+use \Fnugg\Shared\Helpers;
 
 /**
  * Initiating `search` rest route.
@@ -82,11 +83,26 @@ final class Search extends \WP_REST_Controller
          */
         $q = apply_filters('fnugg_search_query_args', $q, $request);
 
+        $transient = Helpers::trans_id($q);
+
+        $content = get_transient( $transient );
+
+        if ( ! empty( $content ) ) {
+            return $content;
+        }
+
+        $content = null;
+
         /**
          * Filters the search query result.
          *
          * @param array $q
          */
-        return apply_filters('fnugg_search_result', $this->fetch->search($q));
+        $content = apply_filters('fnugg_search_result', $this->fetch->search($q));
+
+        // Search getting cached for 1 HOUR
+        set_transient( $transient, $content, HOUR_IN_SECONDS );
+
+        return $content;
     }
 }
