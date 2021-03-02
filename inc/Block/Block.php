@@ -116,16 +116,24 @@ final class Block
         }
 
         /**
+         * Filters search API GET params.
+         *
+         * @param array $q
+         * @param array $atts
+         */
+        $q = apply_filters('fnugg_frontend_self_api_search_params', ['q' => $atts['name']], $atts);
+
+        /**
          * Filters frontend search API response.
          *
          * @param array $resp
          * @param array $atts
          */
-        $resp = apply_filters(
+        $response = apply_filters(
             'fnugg_frontend_self_api_search_response',
             Helpers::get_remote_json(
                 add_query_arg(
-                    ['q' => $atts['name']],
+                    $q,
                     get_rest_url(null, 'codemascot/v1/search/')
                 )
             ),
@@ -133,7 +141,13 @@ final class Block
         );
 
         ob_start();
-        include_once 'Views/html-render-frontend.php';
+        /**
+         * Fires at HTML frontend render.
+         *
+         * @param array $response
+         * @param array $atts
+         */
+        do_action('fnugg_frontend_render_html', $response, $atts);
         return ob_get_clean();
     }
 
