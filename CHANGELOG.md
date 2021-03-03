@@ -1,5 +1,14 @@
 # Change Log
 
+## [v1.0.0] - [03 MAR 2021]
+
+[FEATURE]
+- Introduced caching mechanism for API's as well as for the frontend.
+- Used hash function to create transient key, see `Helpers::trans_id()` method.
+
+[FIXED]
+- Fixed return type for `render()` method.
+
 ## [v0.0.2] - [02 MAR 2021]
 
 [FEATURE]
