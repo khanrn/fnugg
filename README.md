@@ -57,7 +57,7 @@ Example:
 
 ```PHP
 add_action('fnugg_frontend_render_html', function($resp, $atts) {
-	include('your/path/to/file/fnugg-html-render-frontend.php');
+     include('your/path/to/file/fnugg-html-render-frontend.php');
     // Or you can directly put yout HTML here which I don't
     // recommend though, it looks a lot messy!!!
 }, 10, 2);
