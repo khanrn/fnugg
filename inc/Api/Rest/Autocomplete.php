@@ -83,7 +83,7 @@ final class Autocomplete extends \WP_REST_Controller
          */
         $q = apply_filters('fnugg_autocomplete_query_args', $q, $request);
 
-        $transient = Helpers::trans_id($q);
+        $transient = Helpers::trans_id($q, get_class($this));
 
         $content = get_transient( $transient );
 

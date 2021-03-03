@@ -123,7 +123,7 @@ final class Block
          */
         $q = apply_filters('fnugg_frontend_self_api_search_params', ['q' => $atts['name']], $atts);
 
-        $transient = Helpers::trans_id($q);
+        $transient = Helpers::trans_id($q, get_class($this));
 
         $content = get_transient( $transient );
 
