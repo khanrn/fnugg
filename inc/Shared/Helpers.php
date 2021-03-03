@@ -53,13 +53,14 @@ final class Helpers
      * Creating transient ID from query array
      *
      * @param array $q Query array
+     * @param string|bool $t Token to differentiate the transients
      *
      * @return string
      */
-    public static function trans_id(array $q) : string
+    public static function trans_id(array $q, $t) : string
     {
         // We need to hash it as the query can contain
         // multiple types of characters and languages
-        return hash('sha256', http_build_query($q));
+        return hash('sha256', $t . '_' . http_build_query($q));
     }
 }
