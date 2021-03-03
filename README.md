@@ -63,7 +63,7 @@ Well, this plugin is designed keeping modularity in mind. So, instead of providi
 
 ## System Architecture and Solution Design
 
-This project is designed modular way, means you can swap it's most of the parts without modifying it's core code. And for achieving this, mostly below techniques and strategies has been used-
+This project is designed modular way with caching. Modular means you can swap it's most of the parts without modifying it's core code. And for achieving this, mostly below techniques and strategies has been used-
 
 ### WordPress's Hooking API
 In this codebase you'll find several hooks to manipulate this plugin's data. Though, in some cases some hook may seem redundant, still I think those hooks should be there. Because, in my opinion keeping an hook doesn't hurt, but not having a hook sometime make a whole lot difference. Therefore, to me having some extra hooks is a fair trade off.
@@ -73,6 +73,9 @@ For most of dependency for the modules are injected, which helps them to be test
 
 ### Data Abstraction Layer
 Data abstraction layer is used here to separate the data source from the main modules. For this the `Fnugg\Data\Fetch` module has been used implementing `Fnugg\Data\Data` interface. Anyone can swap the `$fetch` object by passing another object of type `\Fnugg\Data\Data` using the `fnugg_fetch_object` filter hook and the other modules will never know that happened. Because they only recognize an object of `\Fnugg\Data\Data` type.
+
+### Caching Mechanism
+For caching mechnism the WordPress transient API has been used here as transient underneath uses object caching if object caching is configured. And for creating transient key SHA-256 has has been used, cause the option name can contain only 172 characters as some room needed for the prefix [`_transient_timeout_`](https://github.com/WordPress/wordpress-develop/blob/de330964b1f595b1c2879beb28414bd5854ec025/src/wp-includes/option.php#L878) while creating the transient. Therefore it's better to use a hash of 64 characters as a transient key.
 
 ## License
 Copyright (c) 2021 [CodeMascot](https://www.codemascot.com/) AKA [Khan Mohammad R.](https://www.codemascot.com/)
