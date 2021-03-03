@@ -53,6 +53,17 @@ Usage is pretty simple. You'll get a block named **Fnugg** out of the box in the
 ### Frontend
 Well, this plugin is designed keeping modularity in mind. So, instead of providing a solid frontend it leverages the WordPress hooking system for this. There is an action hook name `fnugg_frontend_render_html` where you can hook your HTML template. You can modify the search parameters as well with `fnugg_frontend_self_api_search_params` filter hook. For more details have a look at the `render()` method of the [`Block\Block.php`](https://github.com/codemascot/fnugg/blob/main/inc/Block/Block.php) class. Just FYI, our native API's are designed in such a way that it can handle any number of GET parameters it get.
 
+Example:
+
+```PHP
+add_action('fnugg_frontend_render_html', function($resp, $atts) {
+    include('your/path/to/file/fnugg-html-render-frontend.php');
+    // Or you can directly put yout HTML here which I don't
+    // recommend though, it looks a lot messy!!!
+}, 10, 2);
+```
+
+
 ## Coding styles and technique
 * All input data escaped and validated.
 * Developed as *Composer* package.
