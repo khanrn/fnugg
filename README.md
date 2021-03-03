@@ -28,10 +28,16 @@ $ cd /PATH_TO_YOUR_WP_SETUP/wp-content/plugins/fnugg
 
 ```BASH
 $ composer install
+$ npm install
+```
+
+4. For compiling your assets(CSS/JS) use the below command-
+
+```BASH
 $ npm run build
 ```
 
-4. For watching your assets(CSS/JS) changes you can use the below command-
+5. For watching your assets(CSS/JS) changes you can use the below command-
 
 ```BASH
 $ npm start
