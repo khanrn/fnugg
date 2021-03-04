@@ -36,13 +36,16 @@ final class Api
     /**
      * Constructor.
      *
-     * @param string $url Remote API URL
-     *
      * @return void
      */
-    public function __construct(string $url)
+    public function __construct()
     {
-        $this->url   = esc_url_raw($url);
+        $this->url = esc_url_raw(
+            apply_filters(
+                'fnugg_remote_api_url',
+                'https://api.fnugg.no/'
+            )
+        );
 
         /**
          * Filters the Fetch object.
@@ -50,7 +53,11 @@ final class Api
          * @param Data\Data $fetch
          * @param string    $url
          */
-        $this->fetch = apply_filters('fnugg_fetch_object', new Data\Fetch($this->url), $this->url);
+        $this->fetch = apply_filters(
+            'fnugg_fetch_object',
+            new Data\Fetch($this->url),
+            $this->url
+        );
     }
 
     /**
