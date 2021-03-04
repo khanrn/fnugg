@@ -51,18 +51,33 @@ $ npm start
 Usage is pretty simple. You'll get a block named **Fnugg** out of the box in the blocks list in Gutenberg. You just need to bring this block to your page. Then typing any resort name prefixed with `~`(tilda) you'll be presented an auto-complete list. Choose your resort name and save it. For verifying it the exact resort you have choose you can cross checked with the site path just below the field.
 
 ### Frontend
-Well, this plugin is designed keeping modularity in mind. So, instead of providing a solid frontend it leverages the WordPress hooking system for this. There is an action hook name `fnugg_frontend_render_html` where you can hook your HTML template. You can modify the search parameters as well with `fnugg_frontend_self_api_search_params` filter hook. For more details have a look at the `render()` method of the [`Block\Block.php`](https://github.com/codemascot/fnugg/blob/main/inc/Block/Block.php) class. Just FYI, our native API's are designed in such a way that it can handle any number of GET parameters it get.
+Well, this plugin is designed keeping modularity in mind. So, instead of providing a solid frontend it leverages the WordPress hooking system for this. There is an action hook name `fnugg_frontend_render_html` where you can hook your HTML template. You can modify the search parameters as well with another filter hook. For more details have a look at the `render()` method of the `Block\Block.php` class. Just FYI, our native API's are designed in such a way that it can handle any number of GET parameters it get.
 
-Example:
-
+### Frontend Example:
+You can hook your view file like below-
 ```PHP
 add_action('fnugg_frontend_render_html', function($resp, $atts) {
-    include('your/path/to/file/fnugg-html-render-frontend.php');
+    if (empty($resp['hits']['hits'])) {
+        return null; // Or anything on having no response or error.
+    }
+
+    include('/your/path/to/file/fnugg-html-render-frontend.php');
     // Or you can directly put yout HTML here which I don't
-    // recommend though, it looks a lot messy!!!
+    // recommend though as it looks a bit messy!!!
 }, 10, 2);
 ```
-
+And in the `fnugg-html-render-frontend.php` file you can put your HTML code like below-
+```HTML
+<div class="card">
+    <div class="card-feature">
+        <div class="card-top">
+            <h3 class="card-title">
+                <?php echo $resp['hits']['hits'][0]['_source']['name']; ?>
+            </h3>
+        </div>
+    </div>
+</div>
+```
 
 ## Coding styles and technique
 * All input data escaped and validated.
