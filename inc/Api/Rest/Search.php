@@ -78,16 +78,16 @@ final class Search extends \WP_REST_Controller
         /**
          * Filters the search query argument.
          *
-         * @param array $q
+         * @param array            $q
          * @param \WP_REST_Request $request
          */
         $q = apply_filters('fnugg_search_query_args', $q, $request);
 
         $transient = Helpers::trans_id($q, get_class($this));
 
-        $content = get_transient( $transient );
+        $content = get_transient($transient);
 
-        if ( ! empty( $content ) ) {
+        if (! empty($content)) {
             return $content;
         }
 
@@ -101,7 +101,7 @@ final class Search extends \WP_REST_Controller
         $content = apply_filters('fnugg_search_result', $this->fetch->search($q));
 
         // Search getting cached for 1 HOUR
-        set_transient( $transient, $content, HOUR_IN_SECONDS );
+        set_transient($transient, $content, HOUR_IN_SECONDS);
 
         return $content;
     }
