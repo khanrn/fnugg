@@ -1,6 +1,8 @@
 # Change Log
 
 ## [NEXT VERSION]
+[FIXED]
+- PHP and JS coding style fix
 
 ## [v1.1.0] - [04 MAR 2021]
 
