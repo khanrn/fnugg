@@ -59,6 +59,10 @@ final class Helpers
      */
     public static function trans_id(array $q, $t) : string
     {
+        if (empty($t)) {
+            $t = '_';
+        }
+
         // We need to hash it as the query can contain
         // multiple types of characters and languages
         return hash('sha256', $t . '_' . http_build_query($q));

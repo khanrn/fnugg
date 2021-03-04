@@ -65,7 +65,7 @@ final class Block
      */
     public function block_editor_assets() : void
     {
-        $index_js     = 'build/index.js';
+        $index_js     = 'build' . DIRECTORY_SEPARATOR . 'index.js';
         $script_asset = require $this->asset;
         wp_enqueue_script(
             'codemascot-fnugg-block-editor-js',
@@ -75,12 +75,12 @@ final class Block
         );
         wp_set_script_translations('codemascot-fnugg-block-editor', 'fnugg');
 
-        $editor_css = 'build/index.css';
+        $editor_css = 'build' . DIRECTORY_SEPARATOR . 'index.css';
         wp_enqueue_style(
             'codemascot-fnugg-block-editor-css',
             plugins_url($editor_css, $this->args['file']),
             [],
-            filemtime($this->args['dir'] . '/' . $editor_css)
+            filemtime($this->args['dir'] . DIRECTORY_SEPARATOR . $editor_css)
         );
     }
 
@@ -91,12 +91,12 @@ final class Block
      */
     public function block_assets() : void
     {
-        $style_css = 'build/style-index.css';
+        $style_css = 'build' . DIRECTORY_SEPARATOR . 'style-index.css';
         wp_register_style(
             'codemascot-fnugg-block',
             plugins_url($style_css, $this->args['file']),
             [],
-            filemtime($this->args['dir'] . '/' . $style_css)
+            filemtime($this->args['dir'] . DIRECTORY_SEPARATOR . $style_css)
         );
     }
 
