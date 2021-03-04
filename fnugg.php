@@ -35,22 +35,22 @@ function initialize()
         load_plugin_textdomain(
             'fnugg',
             true,
-            basename(dirname(__FILE__)) . '/languages'
+            basename(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'languages'
         );
+
+        $autoload = __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
         /**
          * Checking if vendor/autoload.php exists or not.
          */
-        if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+        if (file_exists($autoload)) {
             /** @noinspection PhpIncludeInspection */
-            require_once __DIR__ . '/vendor/autoload.php';
+            require_once $autoload;
         }
-
-        $api = apply_filters('fnugg_remote_api_url', 'https://api.fnugg.no/');
 
         // Loading the core modules of the plugin
         $modules = [
-            'api'   => (new Api\Api($api))->init(),
+            'api'   => (new Api\Api())->init(),
             'block' => (new Block\Block([
                 'dir'  => __DIR__,
                 'file' => __FILE__
