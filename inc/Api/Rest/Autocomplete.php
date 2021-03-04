@@ -78,16 +78,16 @@ final class Autocomplete extends \WP_REST_Controller
         /**
          * Filters the autocomplete query argument.
          *
-         * @param array $q
+         * @param array            $q
          * @param \WP_REST_Request $request
          */
         $q = apply_filters('fnugg_autocomplete_query_args', $q, $request);
 
         $transient = Helpers::trans_id($q, get_class($this));
 
-        $content = get_transient( $transient );
+        $content = get_transient($transient);
 
-        if ( ! empty( $content ) ) {
+        if (! empty($content)) {
             return $content;
         }
 
@@ -106,7 +106,7 @@ final class Autocomplete extends \WP_REST_Controller
         );
 
         // Autocomplete getting cached for 1 DAY
-        set_transient( $transient, $content, DAY_IN_SECONDS );
+        set_transient($transient, $content, DAY_IN_SECONDS);
 
         return $content;
     }

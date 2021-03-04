@@ -50,9 +50,9 @@ final class Helpers
     }
 
     /**
-     * Creating transient ID from query array
+     * Creating transient ID from query array.
      *
-     * @param array $q Query array
+     * @param array       $q Query array
      * @param string|bool $t Token to differentiate the transients
      *
      * @return string
