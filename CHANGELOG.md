@@ -1,5 +1,9 @@
 # Change Log
 
+## [NEXT VERSION]
+[FIXED]
+- Fnugg API URL is placed under `Api()::constructor()` method.
+
 ## [v1.0.0] - [03 MAR 2021]
 
 [FEATURE]
