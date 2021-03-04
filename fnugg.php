@@ -46,11 +46,9 @@ function initialize()
             require_once __DIR__ . '/vendor/autoload.php';
         }
 
-        $api = apply_filters('fnugg_remote_api_url', 'https://api.fnugg.no/');
-
         // Loading the core modules of the plugin
         $modules = [
-            'api'   => (new Api\Api($api))->init(),
+            'api'   => (new Api\Api())->init(),
             'block' => (new Block\Block([
                 'dir'  => __DIR__,
                 'file' => __FILE__
