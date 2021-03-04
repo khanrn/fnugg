@@ -53,7 +53,7 @@ function initialize()
             'api'   => (new Api\Api())->init(),
             'block' => (new Block\Block([
                 'dir'  => __DIR__,
-                'file' => __FILE__
+                'file' => __FILE__,
             ]))->init(),
         ];
 

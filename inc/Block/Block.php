@@ -42,7 +42,7 @@ final class Block
      */
     public function __construct(array $args)
     {
-        $this->args = $args;
+        $this->args  = $args;
         $this->asset = $this->args['dir'] . '/build/index.asset.php';
     }
 
@@ -101,7 +101,7 @@ final class Block
     }
 
     /**
-     * Frontend redering in server side
+     * Frontend redering in server side.
      *
      * @see wp-includes/class-wp-block-type.php, WP_Block_Type():render()
      *
@@ -125,9 +125,9 @@ final class Block
 
         $transient = Helpers::trans_id($q, get_class($this));
 
-        $content = get_transient( $transient );
+        $content = get_transient($transient);
 
-        if ( ! empty( $content ) ) {
+        if (! empty($content)) {
             return $content;
         }
 
@@ -163,7 +163,7 @@ final class Block
         $content = ob_get_clean();
 
         // Frontend HTML getting cached for 15 MINUTES
-        set_transient( $transient, $content, 15 * MINUTE_IN_SECONDS );
+        set_transient($transient, $content, 15 * MINUTE_IN_SECONDS);
 
         return $content;
     }
