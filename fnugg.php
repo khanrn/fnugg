@@ -9,7 +9,7 @@ declare(strict_types=1);
  * Author URI:      https://www.codemascot.com/
  * Text Domain:     fnugg
  * Domain Path:     /languages
- * Version:         1.1.0
+ * Version:         1.1.1
  *
  * @package         Fnugg
  */
