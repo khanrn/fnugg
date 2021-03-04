@@ -35,15 +35,17 @@ function initialize()
         load_plugin_textdomain(
             'fnugg',
             true,
-            basename(dirname(__FILE__)) . '/languages'
+            basename(dirname(__FILE__)) . DIRECTORY_SEPARATOR . 'languages'
         );
+
+        $autoload = __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
         /**
          * Checking if vendor/autoload.php exists or not.
          */
-        if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+        if (file_exists($autoload)) {
             /** @noinspection PhpIncludeInspection */
-            require_once __DIR__ . '/vendor/autoload.php';
+            require_once $autoload;
         }
 
         // Loading the core modules of the plugin
