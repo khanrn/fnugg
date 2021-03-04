@@ -2,6 +2,8 @@
 
 ## [NEXT VERSION]
 
+## [v1.1.0] - [04 MAR 2021]
+
 [FIXED]
 - Fnugg API URL is placed under `Api()::constructor()` method.
 - `DIRECTORY_SEPARATOR` predefined PHP constant used instead of slash(`/`).
