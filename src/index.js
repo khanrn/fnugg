@@ -3,14 +3,14 @@
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-import {registerBlockType} from "@wordpress/blocks";
+import { registerBlockType } from "@wordpress/blocks";
 
 /**
  * Retrieves the translation of text.
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
-import {__} from "@wordpress/i18n";
+import { __ } from "@wordpress/i18n";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
