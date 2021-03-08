@@ -3,7 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
-import {__} from "@wordpress/i18n";
+import { __ } from "@wordpress/i18n";
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -11,14 +11,14 @@ import {__} from "@wordpress/i18n";
  *
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
-import {useBlockProps} from "@wordpress/block-editor";
+import { useBlockProps } from "@wordpress/block-editor";
 
 /**
  * WP Dependencies
  */
 import apiFetch from "@wordpress/api-fetch";
-import {RichText} from "@wordpress/block-editor";
-import {addFilter, applyFilters} from "@wordpress/hooks";
+import { RichText } from "@wordpress/block-editor";
+import { addFilter, applyFilters } from "@wordpress/hooks";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -51,7 +51,7 @@ export default function Edit(props) {
           search,
         ]);
 
-        return apiFetch({path: uri[0] + uri[1]}).then((resp) => {
+        return apiFetch({ path: uri[0] + uri[1] }).then((resp) => {
           return resp;
         });
       },
@@ -72,7 +72,7 @@ export default function Edit(props) {
       getOptionCompletion: (item) => {
         let params = applyFilters(
           "fnugg_autocompleter_options_set_attributes",
-          ["replace", item],
+          ["replace", item]
         );
 
         return {
@@ -95,7 +95,7 @@ export default function Edit(props) {
     "codemascot",
     (completers, blockName) => {
       return blockName === "codemascot/fnugg" ? autocompleters : completers;
-    },
+    }
   );
 
   return (
