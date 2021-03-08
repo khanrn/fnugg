@@ -2,6 +2,10 @@
 
 ## [NEXT VERSION]
 
+[FIXED]
+- `.editorconfig` coding styles fix.
+- Applied bracket spacing in JS coding style.
+
 ## [v1.1.1] - [04 MAR 2021]
 
 [FIXED]
