@@ -43,7 +43,11 @@ final class Block
     public function __construct(array $args)
     {
         $this->args  = $args;
-        $this->asset = $this->args['dir'] . '/build/index.asset.php';
+        $this->asset = $this->args['dir']
+					 . DIRECTORY_SEPARATOR
+					 . 'build'
+					 . DIRECTORY_SEPARATOR
+					 . 'index.asset.php';
     }
 
     /**

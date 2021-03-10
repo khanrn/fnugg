@@ -5,6 +5,7 @@
 [FIXED]
 - `.editorconfig` coding styles fix.
 - Applied bracket spacing in JS coding style.
+- Cherry picked `DIRECTORY_SEPARATOR` fix.
 
 ## [v1.1.1] - [04 MAR 2021]
 
