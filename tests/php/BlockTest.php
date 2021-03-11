@@ -30,6 +30,11 @@ class BlockTest extends TestCase
         );
 	}
 
+	public function tearDown() : void
+	{
+		parent::tearDown();
+	}
+
 	public function test_init_block_added_to_action_hook_init() : void
 	{
 		\WP_Mock::expectActionAdded( 'init', [ $this->block, 'init_block' ] );

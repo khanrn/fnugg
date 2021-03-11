@@ -105,6 +105,11 @@ class FetchTest extends TestCase
 		);
 	}
 
+	public function tearDown() : void
+	{
+		parent::tearDown();
+	}
+
 	public function test_get_remote_json_method() : void
     {
 		$r = Helpers::get_remote_json($this->url);
