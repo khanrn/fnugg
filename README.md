@@ -1,4 +1,6 @@
 # Fnugg
+[![Build Status](https://travis-ci.org/codemascot/fnugg.svg?branch=main)](https://travis-ci.org/codemascot/fnugg) ![last-commit](https://img.shields.io/github/last-commit/codemascot/fnugg.svg)
+
 A Gutenberg block for rendering Fnugg.no API data with autocomplete support from Fnugg API.
 
 ## Table Of Contents
