@@ -2,6 +2,9 @@
 
 ## [NEXT VERSION]
 
+[ADDED]
+- Unit testing added through `WP_Mock`.
+
 [FIXED]
 - `.editorconfig` coding styles fix.
 - Applied bracket spacing in JS coding style.

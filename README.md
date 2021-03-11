@@ -109,6 +109,12 @@ Data abstraction layer is used here to separate the data source from the main mo
 ### Caching Mechanism
 For caching mechnism the WordPress transient API has been used here as transient underneath uses object caching if object caching is configured. And for creating transient key SHA-256 has has been used, cause the option name can contain only 172 characters as some room needed for the prefix [`_transient_timeout_`](https://github.com/WordPress/wordpress-develop/blob/de330964b1f595b1c2879beb28414bd5854ec025/src/wp-includes/option.php#L878) while creating the transient. Therefore it's better to use a hash of 64 characters as a transient key.
 
+### Unit Testing and Continuous Integration(CI)
+For unit testing 10ups's [`WP_Mock`](https://github.com/10up/wp_mock) package has been used as this seems to me more appropriate for testing themes and plugins in isolation. And for continuous integration(CI) _Travis CI_ has been used.
+
+> Some may have the query that why not the default `WP_UnitTestCase`.
+Well, I think WP's default testing suite is more appropriate for an integration testing, which is good when it comes to the level of WP. But when we are developing or maintaining a theme or plugin, then I believe for any change we first need to be sure our code behaves properly. Therefore we need to test them in isolation assuming that WP is 100% perfect. And here `WP_Mock` comes a lot handy. After an isolated unit test(if passed), we can go for an integration test to measure how well it is integrating with the WP core.
+
 ## License
 Copyright (c) 2021 [CodeMascot](https://www.codemascot.com/) AKA [Khan Mohammad R.](https://www.codemascot.com/)
 
