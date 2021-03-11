@@ -3,6 +3,18 @@ dist: trusty
 
 language: php
 
+before_script:
+  - composer install --ignore-platform-reqs
+  - npm install
+  - npm run build
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+    - $HOME/.npm
+    - node_modules
+    - $HOME/vendor
+
 notifications:
   email:
     on_success: never
