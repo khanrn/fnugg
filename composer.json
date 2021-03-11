@@ -11,6 +11,8 @@
   "require": {
   },
   "require-dev": {
+    "10up/wp_mock": "~0.4",
+    "phpunit/phpunit": "^9.5.2"
   },
   "autoload": {
     "psr-4": {
