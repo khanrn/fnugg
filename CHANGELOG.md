@@ -2,6 +2,8 @@
 
 ## [NEXT VERSION]
 
+## [v1.2.0] - [11 MAR 2021]
+
 [ADDED]
 - Unit testing added through `WP_Mock`.
 
