@@ -5,8 +5,8 @@ language: php
 
 before_script:
   - composer install --ignore-platform-reqs
-  - npm install
-  - npm run build
+  # - npm install # No need right now as we are not running any JS tests
+  # - npm run build # No need right now as we are not running any JS tests
 
 cache:
   directories:
