@@ -44,10 +44,10 @@ final class Block
     {
         $this->args  = $args;
         $this->asset = $this->args['dir']
-					 . DIRECTORY_SEPARATOR
-					 . 'build'
-					 . DIRECTORY_SEPARATOR
-					 . 'index.asset.php';
+                     . DIRECTORY_SEPARATOR
+                     . 'build'
+                     . DIRECTORY_SEPARATOR
+                     . 'index.asset.php';
     }
 
     /**

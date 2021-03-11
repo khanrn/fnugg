@@ -10,8 +10,10 @@ declare(strict_types=1);
  * @since 2.2.0
  *
  * @param string $string What to remove the trailing slashes from.
+ *
  * @return string String without the trailing slashes.
  */
-function untrailingslashit( $string ) {
-	return rtrim( $string, '/\\' );
+function untrailingslashit($string)
+{
+    return rtrim($string, '/\\');
 }
