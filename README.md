@@ -59,7 +59,7 @@ Well, this plugin is designed keeping modularity in mind. So, instead of providi
 You can hook your view file like below-
 ```PHP
 add_action('fnugg_frontend_render_html', function($resp, $atts) {
-    if (empty($resp['hits']['hits'])) {
+    if (empty($resp['hits'])) {
         return null; // Or anything on having no response or error.
     }
 
