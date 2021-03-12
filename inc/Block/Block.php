@@ -129,30 +129,30 @@ final class Block
 
         $transient = Helpers::trans_id($q, get_class($this));
 
-        $content = get_transient($transient);
+        $response = get_transient($transient);
 
-        if (! empty($content)) {
-            return $content;
+        if (empty($response)) {
+            $response = null;
+
+			/**
+			 * Filters frontend search API response.
+			 *
+			 * @param array $resp
+			 * @param array $atts
+			 */
+			$response = apply_filters(
+				'fnugg_frontend_self_api_search_response',
+				Helpers::get_remote_json(
+					add_query_arg(
+						$q,
+						get_rest_url(null, 'codemascot/v1/search/')
+					)
+				),
+				$atts
+			);
+
+			set_transient($transient, $response, 15 * MINUTE_IN_SECONDS);
         }
-
-        $content = null;
-
-        /**
-         * Filters frontend search API response.
-         *
-         * @param array $resp
-         * @param array $atts
-         */
-        $response = apply_filters(
-            'fnugg_frontend_self_api_search_response',
-            Helpers::get_remote_json(
-                add_query_arg(
-                    $q,
-                    get_rest_url(null, 'codemascot/v1/search/')
-                )
-            ),
-            $atts
-        );
 
         ob_start();
 
@@ -165,9 +165,6 @@ final class Block
         do_action('fnugg_frontend_render_html', $response, $atts);
 
         $content = ob_get_clean();
-
-        // Frontend HTML getting cached for 15 MINUTES
-        set_transient($transient, $content, 15 * MINUTE_IN_SECONDS);
 
         return $content;
     }
