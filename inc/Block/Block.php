@@ -134,24 +134,24 @@ final class Block
         if (empty($response)) {
             $response = null;
 
-			/**
-			 * Filters frontend search API response.
-			 *
-			 * @param array $resp
-			 * @param array $atts
-			 */
-			$response = apply_filters(
-				'fnugg_frontend_self_api_search_response',
-				Helpers::get_remote_json(
-					add_query_arg(
-						$q,
-						get_rest_url(null, 'codemascot/v1/search/')
-					)
-				),
-				$atts
-			);
+            /**
+             * Filters frontend search API response.
+             *
+             * @param array $resp
+             * @param array $atts
+             */
+            $response = apply_filters(
+                'fnugg_frontend_self_api_search_response',
+                Helpers::get_remote_json(
+                    add_query_arg(
+                        $q,
+                        get_rest_url(null, 'codemascot/v1/search/')
+                    )
+                ),
+                $atts
+            );
 
-			set_transient($transient, $response, 15 * MINUTE_IN_SECONDS);
+            set_transient($transient, $response, 15 * MINUTE_IN_SECONDS);
         }
 
         ob_start();
