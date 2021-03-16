@@ -90,10 +90,10 @@ And in the `fnugg-html-render-frontend.php` file you can put your HTML code like
 * *PHP Codesniffer* checked.
 * *PSR2* coding standard followed mostly.
 * Modern PHP code, tested with PHP 7.4
-* Designed totally *OOP* way.
+* Designed totally *OOP* way(except the main `fnugg.php` bootstrap file).
 * Strictly typed, all methods, properties and returns.
 * All the classes, methods, properties, parameters, hooks etc. are 100% documented with *PHPDoc*.
-* Basic unit testing scaffolding initiated.
+* Used `WP_Mock` for unit testing, though the basic unit testing scaffolding was generated with default `WP_UnitTestCase`.
 
 ## System Architecture and Solution Design
 
