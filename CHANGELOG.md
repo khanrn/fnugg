@@ -2,6 +2,9 @@
 
 ## [NEXT VERSION]
 
+[FIXED]
+- Using JSON in stead of whole HTML caching in frontend.
+
 ## [v1.2.0] - [11 MAR 2021]
 
 [ADDED]
