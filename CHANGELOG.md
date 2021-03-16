@@ -2,6 +2,10 @@
 
 ## [NEXT VERSION]
 
+[FIXED]
+- JS enhancement, turned all `let` to `const` and used YODA condition check.
+- Cleaned `package.json`, removed some unnecessary packages, set version to stable.
+
 ## [v1.2.1] - [16 MAR 2021]
 
 [FIXED]
