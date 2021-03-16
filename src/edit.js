@@ -94,7 +94,7 @@ export default function Edit(props) {
     "editor.Autocomplete.completers",
     "codemascot",
     (completers, blockName) => {
-      return blockName === "codemascot/fnugg" ? autocompleters : completers;
+      return "codemascot/fnugg" === blockName ? autocompleters : completers;
     }
   );
 
