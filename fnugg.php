@@ -62,7 +62,9 @@ function initialize()
          *
          * @param array $modules
          */
-        return apply_filters('fnugg_core_modules', $modules);
+        return array_map(function($module) {
+            $module->init();
+        }, apply_filters('fnugg_core_modules', $modules));
     } catch (\Throwable $throwable) {
         if (defined('WP_DEBUG') && WP_DEBUG) {
             throw $throwable;
