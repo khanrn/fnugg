@@ -50,11 +50,11 @@ function initialize()
 
         // Loading the core modules of the plugin
         $modules = [
-            'api'   => (new Api\Api())->init(),
+            'api'   => (new Api\Api()),
             'block' => (new Block\Block([
                 'dir'  => __DIR__,
                 'file' => __FILE__,
-            ]))->init(),
+            ])),
         ];
 
         /**
