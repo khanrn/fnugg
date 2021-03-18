@@ -46,7 +46,7 @@ export default function Edit(props) {
           return [];
         }
 
-        let uri = applyFilters("fnugg_autocompleter_remote_api_options_uri", [
+        const uri = applyFilters("fnugg_autocompleter_remote_api_options_uri", [
           "codemascot/v1/autocomplete/?q=",
           search,
         ]);
@@ -57,7 +57,7 @@ export default function Edit(props) {
       },
       isDebounced: true,
       getOptionLabel: (item) => {
-        let label = applyFilters("fnugg_autocompleter_option_label", [
+        const label = applyFilters("fnugg_autocompleter_option_label", [
           <span>
             {item.name} <small>{item.site_path}</small>
           </span>,
@@ -70,7 +70,7 @@ export default function Edit(props) {
       getOptionKeywords: (item) => [item.name, item.site_path],
       // completions should be removed, but then spawn setPost
       getOptionCompletion: (item) => {
-        let params = applyFilters(
+        const params = applyFilters(
           "fnugg_autocompleter_options_set_attributes",
           ["replace", item]
         );
@@ -94,7 +94,7 @@ export default function Edit(props) {
     "editor.Autocomplete.completers",
     "codemascot",
     (completers, blockName) => {
-      return blockName === "codemascot/fnugg" ? autocompleters : completers;
+      return "codemascot/fnugg" === blockName ? autocompleters : completers;
     }
   );
 
