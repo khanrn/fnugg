@@ -9,7 +9,7 @@ declare(strict_types=1);
  * Author URI:      https://www.codemascot.com/
  * Text Domain:     fnugg
  * Domain Path:     /languages
- * Version:         1.2.1
+ * Version:         1.2.2
  *
  * @package         Fnugg
  */
@@ -62,7 +62,7 @@ function initialize()
          *
          * @param array $modules
          */
-        return array_map(function($module) {
+        return array_map(function ($module) {
             $module->init();
         }, apply_filters('fnugg_core_modules', $modules));
     } catch (\Throwable $throwable) {
