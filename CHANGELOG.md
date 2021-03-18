@@ -5,6 +5,7 @@
 [FIXED]
 - JS enhancement, turned all `let` to `const` and used YODA condition check.
 - Cleaned `package.json`, removed some unnecessary packages, set version to stable.
+- Calling the `init()` methods of the modules after applying filter. Fixes [#24](https://github.com/codemascot/fnugg/issues/24).
 
 ## [v1.2.1] - [16 MAR 2021]
 
